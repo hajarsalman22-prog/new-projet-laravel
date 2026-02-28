@@ -120,6 +120,9 @@ Route::get('/products', function(){
 
 
 
+
+//*
+/*
 Route::get('/',function(){
     return view('home');
 });
@@ -127,13 +130,11 @@ Route::get('/About',function(){
     return view('about');
 });
 
-/*
+
 
 use App\Http\Controllers\EtudiantController;
 Route::get('/Etudiant/create', [EtudiantController::class, 'create'])->name('Etudiant.create');
 Route::post('/Etudiant', [EtudiantController::class, 'store'])->name('Etudiant.store');
-
-    */
 
 
 
@@ -157,3 +158,45 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/product/create', [ProductController::class, 'ajouter'])->name('product.ajouter');
 Route::post('/create', [ProductController::class, 'store'])->name('product.store');
+
+
+Route::get('/films' , function(){
+
+ $films=DB::table("films")->get();
+ dd($films);
+});
+
+
+Route::get('/films{id}' , function(){
+
+$film=DB::table("films")->find($id);
+dd($film);
+});
+
+
+
+Route::get('/stagiaires', [StagiaireController::class, 'index'])->name('stagiaires.index');
+
+Route::get('/stagiaires/create', [StagiaireController::class, 'create'])->name('stagiaires.create');
+
+Route::post('/stagiaires', [StagiaireController::class, 'store'])->name('stagiaires.store');
+
+Route::get('/stagiaires/{id}', [StagiaireController::class, 'show'])->name('stagiaires.show');
+
+Route::get('/stagiaires/{id}/edit', [StagiaireController::class, 'edit'])->name('stagiaires.edit');
+
+Route::put('/stagiaires/{id}', [StagiaireController::class, 'update'])->name('stagiaires.update');
+
+Route::delete('/stagiaires/{id}', [StagiaireController::class, 'destroy'])->name('stagiaires.destroy'); 
+*/
+
+
+
+use App\Http\Controllers\AnnonceController;
+
+Route::get('/', function () {
+    return view('helllo');
+});
+
+Route::resource('annonces', AnnonceController::class);
+Route::get('/annonces/dashboard', [AnnonceController::class,'dashboard']);
